@@ -35,7 +35,7 @@ $ bash run.sh
 [INFO]: 📦   Your wasm pkg is ready to publish at ffi-wasm/pkg.
 ++ realpath ./main.mts
 + ./target/x86_64-unknown-linux-musl/release/native-app /poc-rust-wasm-nodejs/main.mts
-(node:72505) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(node:80422) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 DEBUG num_1 1
@@ -47,4 +47,5 @@ DEBUG timestamp_micros 1000000n
 DEBUG timestamp_rfc3339 1970-01-01T00:00:01+00:00
 DEBUG deserialized LogEntry { __wbg_ptr: 1114128 }
 DEBUG deserialized.nanos 123n
+DEBUG reserialized {"nanos":123}
 ```

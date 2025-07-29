@@ -17,7 +17,7 @@ pub fn deserialize_log_entry_from_json(serialized: String) -> Result<LogEntry, S
     Ok(LogEntry::new(deserialized.nanos))
 }
 
-#[derive(serde::Deserialize)]
+#[derive(serde::Deserialize, serde::Serialize)]
 struct LogEntryJson {
     nanos: i64,
 }
@@ -56,5 +56,13 @@ impl LogEntry {
 
     fn read_private_micros(&self) -> i64 {
         self.micros
+    }
+
+    pub fn serialize_to_json(&self) -> Result<String, String> {
+        let serializable: LogEntryJson = LogEntryJson { nanos: self.nanos };
+        match serde_json::to_string(&serializable) {
+            Ok(n) => Ok(n),
+            Err(err) => Err(err.to_string()),
+        }
     }
 }

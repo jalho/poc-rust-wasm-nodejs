@@ -25,6 +25,9 @@ async function main() {
   console.log("DEBUG deserialized", deserialized);
   console.log("DEBUG deserialized.nanos", deserialized.nanos);
 
+  const reserialized: string = deserialized.serialize_to_json();
+  console.log("DEBUG reserialized", reserialized);
+
   deserialized.free();
 }
 main();
