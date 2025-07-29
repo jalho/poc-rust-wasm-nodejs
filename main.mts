@@ -4,8 +4,9 @@ async function main() {
   const num_1: number = lib.get_one();
   console.log("DEBUG num_1", num_1);
 
-  const log_entry: lib.LogEntry = lib.make_log_entry();
+  const log_entry: lib.LogEntry = lib.make_log_entry(1_000_000_000n);
   console.log("DEBUG log_entry", log_entry);
+  console.log("DEBUG log_entry.nanos", log_entry.nanos);
   console.log("DEBUG log_entry instanceof lib.LogEntry", log_entry instanceof lib.LogEntry);
 
   const timestamp_millis: bigint = log_entry.as_timestamp_millis();
