@@ -19,7 +19,9 @@ cd ffi-wasm
 cargo build --release --target wasm32-unknown-unknown
 cd -
 
-rm -r ffi-wasm/pkg
+if test -d ffi-wasm/pkg; then
+  rm -r 
+fi
 wasm-pack build ffi-wasm --target nodejs
 
 clear
