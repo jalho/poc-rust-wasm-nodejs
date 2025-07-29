@@ -5,7 +5,7 @@ async function main() {
   console.log("DEBUG num_1", num_1);
 
   const log_entry: lib.LogEntry = lib.make_log_entry();
-  const timestamp: bigint = log_entry.as_timestamp();
+  const timestamp: bigint = log_entry.as_timestamp_millis();
   console.log("DEBUG timestamp", timestamp);
 
   log_entry.free();

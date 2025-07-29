@@ -17,7 +17,7 @@ pub struct LogEntry {
 
 #[wasm_bindgen::prelude::wasm_bindgen]
 impl LogEntry {
-    pub fn as_timestamp(&self) -> i64 {
+    pub fn as_timestamp_millis(&self) -> i64 {
         return self.instant.timestamp_millis();
     }
 }

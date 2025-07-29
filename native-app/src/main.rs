@@ -23,34 +23,34 @@ async fn coroutine(script_path: String) -> ExitCode {
     cmd.args(vec!["--experimental-strip-types", &script_path]);
 
     match cmd.output().await {
-        Ok(output) => match output.status.success() {
-            true => {
-                let stdout_utf8: String = match String::from_utf8(output.stdout) {
-                    Ok(n) => n,
-                    Err(_) => return ExitCode::from(44),
-                };
+        Ok(output) => {
+            let stdout_utf8: String = match String::from_utf8(output.stdout) {
+                Ok(n) => n,
+                Err(_) => return ExitCode::from(44),
+            };
 
-                let _stderr_utf8: String = match String::from_utf8(output.stderr) {
-                    Ok(n) => n,
-                    Err(_) => return ExitCode::from(45),
-                };
+            let stderr_utf8: String = match String::from_utf8(output.stderr) {
+                Ok(n) => n,
+                Err(_) => return ExitCode::from(45),
+            };
 
-                // eprintln!("{stderr_utf8}");
-                println!("{stdout_utf8}");
+            eprintln!("{stderr_utf8}");
+            println!("{stdout_utf8}");
 
-                ExitCode::SUCCESS
+            match output.status.success() {
+                true => ExitCode::SUCCESS,
+                false => match output.status.code() {
+                    Some(exit_code) => {
+                        let exit_code: u8 = match exit_code.try_into() {
+                            Ok(n) => n,
+                            Err(_) => return ExitCode::from(46),
+                        };
+                        ExitCode::from(exit_code)
+                    }
+                    None => ExitCode::from(47),
+                },
             }
-            false => match output.status.code() {
-                Some(exit_code) => {
-                    let exit_code: u8 = match exit_code.try_into() {
-                        Ok(n) => n,
-                        Err(_) => return ExitCode::from(46),
-                    };
-                    ExitCode::from(exit_code)
-                }
-                None => ExitCode::from(47),
-            },
-        },
+        }
         Err(_) => ExitCode::from(48),
     }
 }
