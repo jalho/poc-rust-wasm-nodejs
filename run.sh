@@ -20,7 +20,7 @@ cargo build --release --target wasm32-unknown-unknown
 cd -
 
 if test -d ffi-wasm/pkg; then
-  rm -r 
+  rm -r ffi-wasm/pkg
 fi
 wasm-pack build ffi-wasm --target nodejs
 
