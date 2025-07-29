@@ -7,4 +7,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 chrono       = { workspace = true, features = [ "alloc" ] }
+serde        = { workspace = true, features = [ "serde_derive" ] }
+serde_json   = { workspace = true, features = [ "alloc" ] }
 wasm-bindgen = { workspace = true, features = [] }

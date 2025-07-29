@@ -4,8 +4,22 @@ pub fn get_one() -> u32 {
 }
 
 #[wasm_bindgen::prelude::wasm_bindgen]
-pub fn make_log_entry(nanos: i64) -> LogEntry {
+pub fn make_log_entry_from_nanos(nanos: i64) -> LogEntry {
     LogEntry::new(nanos)
+}
+
+#[wasm_bindgen::prelude::wasm_bindgen]
+pub fn deserialize_log_entry_from_json(serialized: String) -> Result<LogEntry, String> {
+    let deserialized: LogEntryJson = match serde_json::from_str::<LogEntryJson>(&serialized) {
+        Ok(n) => n,
+        Err(err) => return Err(err.to_string()),
+    };
+    Ok(LogEntry::new(deserialized.nanos))
+}
+
+#[derive(serde::Deserialize)]
+struct LogEntryJson {
+    nanos: i64,
 }
 
 #[wasm_bindgen::prelude::wasm_bindgen]

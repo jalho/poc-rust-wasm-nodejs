@@ -4,7 +4,7 @@ async function main() {
   const num_1: number = lib.get_one();
   console.log("DEBUG num_1", num_1);
 
-  const log_entry: lib.LogEntry = lib.make_log_entry(1_000_000_000n);
+  const log_entry: lib.LogEntry = lib.make_log_entry_from_nanos(1_000_000_000n);
   console.log("DEBUG log_entry", log_entry);
   console.log("DEBUG log_entry.nanos", log_entry.nanos);
   console.log("DEBUG log_entry instanceof lib.LogEntry", log_entry instanceof lib.LogEntry);
@@ -19,5 +19,12 @@ async function main() {
   console.log("DEBUG timestamp_rfc3339", timestamp_rfc3339);
 
   log_entry.free();
+
+  const serialized: string = JSON.stringify({ nanos: 123 });
+  const deserialized: lib.LogEntry = lib.deserialize_log_entry_from_json(serialized);
+  console.log("DEBUG deserialized", deserialized);
+  console.log("DEBUG deserialized.nanos", deserialized.nanos);
+
+  deserialized.free();
 }
 main();

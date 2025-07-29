@@ -31,11 +31,11 @@ $ bash run.sh
 [INFO]: ⬇️  Installing wasm-bindgen...
 [INFO]: Optimizing wasm binaries with `wasm-opt`...
 [INFO]: Optional fields missing from Cargo.toml: 'description', 'repository', and 'license'. These are not necessary, but recommended
-[INFO]: ✨   Done in 0.29s
+[INFO]: ✨   Done in 0.92s
 [INFO]: 📦   Your wasm pkg is ready to publish at ffi-wasm/pkg.
 ++ realpath ./main.mts
 + ./target/x86_64-unknown-linux-musl/release/native-app /poc-rust-wasm-nodejs/main.mts
-(node:63653) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(node:72505) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 
 DEBUG num_1 1
@@ -45,4 +45,6 @@ DEBUG log_entry instanceof lib.LogEntry true
 DEBUG timestamp_millis 1000n
 DEBUG timestamp_micros 1000000n
 DEBUG timestamp_rfc3339 1970-01-01T00:00:01+00:00
+DEBUG deserialized LogEntry { __wbg_ptr: 1114128 }
+DEBUG deserialized.nanos 123n
 ```
