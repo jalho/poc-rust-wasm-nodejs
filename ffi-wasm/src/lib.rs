@@ -11,6 +11,7 @@ pub fn make_log_entry(nanos: i64) -> LogEntry {
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub struct LogEntry {
     pub nanos: i64,
+    micros: i64,
 
     instant: chrono::DateTime<chrono::Utc>,
 }
@@ -20,6 +21,7 @@ impl LogEntry {
     pub fn new(nanos: i64) -> Self {
         Self {
             nanos,
+            micros: nanos / 1000,
             instant: chrono::DateTime::from_timestamp_nanos(nanos),
         }
     }
@@ -28,7 +30,15 @@ impl LogEntry {
         return self.instant.timestamp_millis();
     }
 
+    pub fn as_timestamp_micros(&self) -> i64 {
+        self.read_private_micros()
+    }
+
     pub fn as_timestamp_rfc3339(&self) -> String {
         return self.instant.to_rfc3339();
+    }
+
+    fn read_private_micros(&self) -> i64 {
+        self.micros
     }
 }

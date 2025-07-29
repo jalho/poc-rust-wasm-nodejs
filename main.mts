@@ -12,6 +12,9 @@ async function main() {
   const timestamp_millis: bigint = log_entry.as_timestamp_millis();
   console.log("DEBUG timestamp_millis", timestamp_millis);
 
+  const timestamp_micros: bigint = log_entry.as_timestamp_micros();
+  console.log("DEBUG timestamp_micros", timestamp_micros);
+
   const timestamp_rfc3339: string = log_entry.as_timestamp_rfc3339();
   console.log("DEBUG timestamp_rfc3339", timestamp_rfc3339);
 
