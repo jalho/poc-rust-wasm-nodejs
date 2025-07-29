@@ -24,5 +24,4 @@ if test -d ffi-wasm/pkg; then
 fi
 wasm-pack build ffi-wasm --target nodejs
 
-clear
 ./target/x86_64-unknown-linux-musl/release/native-app $(realpath ./main.mts)
