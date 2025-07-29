@@ -48,6 +48,8 @@ impl LogEntry {
         self.read_private_micros()
     }
 
+    /// Returns an RFC 3339 and ISO 8601 date and time string such as
+    /// `1996-12-19T16:39:57-08:00`.
     pub fn as_timestamp_rfc3339(&self) -> String {
         return self.instant.to_rfc3339();
     }
