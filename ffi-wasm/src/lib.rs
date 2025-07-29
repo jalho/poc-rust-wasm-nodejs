@@ -24,6 +24,7 @@ struct LogEntryJson {
 
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub struct LogEntry {
+    #[wasm_bindgen(readonly)]
     pub nanos: i64,
     micros: i64,
 
