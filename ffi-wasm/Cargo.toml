@@ -6,5 +6,5 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-chrono       = { workspace = true, features = [] }
+chrono       = { workspace = true, features = [ "alloc" ] }
 wasm-bindgen = { workspace = true, features = [] }

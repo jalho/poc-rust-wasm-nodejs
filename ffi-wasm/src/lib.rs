@@ -20,4 +20,8 @@ impl LogEntry {
     pub fn as_timestamp_millis(&self) -> i64 {
         return self.instant.timestamp_millis();
     }
+
+    pub fn as_timestamp_rfc3339(&self) -> String {
+        return self.instant.to_rfc3339();
+    }
 }
